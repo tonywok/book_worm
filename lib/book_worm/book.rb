@@ -6,7 +6,7 @@ module BookWorm
     INDICES = [:isbn, :title, :combined, :full]
 
     attr_accessor :publisher, :authors, :isbn,
-                  :isbn13, :title, :long_title, 
+                  :isbn13, :title, :long_title,
                   :book_id
 
     def initialize(book_data)
@@ -22,12 +22,14 @@ module BookWorm
     class << self
 
       INDICES.each do |index|
-        define_method "find_book_by_#{index}" do |arg|
-          find_book(index, arg)
+        index_name = (index.to_s =~ /full|combined/ ? "#{index}_index" : index)
+
+        define_method "find_by_#{index_name}" do |arg|
+          find(index, arg)
         end
 
-        define_method "find_books_by_#{index}" do |arg|
-          find_books(index, arg)
+        define_method "find_all_by_#{index_name}" do |arg|
+          find_all(index, arg)
         end
       end
 
@@ -35,21 +37,21 @@ module BookWorm
       #   isbn     - pass in a valid isbn or isbn13 value.
       #   title    - keyword search on title, long title and latinized title.
       #   combined - search across titles, authors, and publisher name
-      #   full     - search across itles, authors, publisher name, summary, 
+      #   full     - search across itles, authors, publisher name, summary,
       #              notes, awards information, etc
-      def find_books(index, value)
-        normalize(query_isbndb(index, value))
-      end
-      
-      def find_book(index, value)
+      def find(index, value)
         normalize(query_isbndb(index, value))[0]
+      end
+
+      def find_all(index, value)
+        normalize(query_isbndb(index, value))
       end
 
       private
 
       def normalize(results)
-        begin 
-          [results['ISBNdb']['BookList']['BookData']].flatten.collect do |book| 
+        begin
+          [results['ISBNdb']['BookList']['BookData']].flatten.collect do |book|
             Book.new(book)
           end
         rescue
