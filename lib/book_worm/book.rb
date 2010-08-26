@@ -2,7 +2,7 @@ require 'cgi'
 
 module BookWorm
   class Book < Searchable
-    
+
     INDICES = [:isbn, :title, :combined, :full]
 
     attr_accessor :publisher, :authors, :isbn,
