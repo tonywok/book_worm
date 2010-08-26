@@ -13,29 +13,29 @@ describe BookWorm do
                       :long_title => "Programming Ruby 1.9: The Pragmatic Programmers' Guide",
                       :authors    => "Dave Thomas, Chad Fowler, Andy Hunt, " }
       end
-      it 'returns a unique book represented by given isbn' do
+      it 'indexes by isbn.' do
         result = BookWorm::Book.find_book(:isbn, @book_data[:isbn])
         @book_data.each do |key,val|
           result.send(key).should == val
         end
       end
 
-      it 'can index on isbn13' do
+      it 'indexes by isbn13.' do
         result = BookWorm::Book.find_book(:isbn, @book_data[:isbn13])
         @book_data.each do |key,val|
           result.send(key).should == val
         end
       end
 
-      context 'and take advantage of helpers' do
-        it 'can index on isbn13' do
+      context 'when taking advantage of helpers' do
+        it 'indexes by isbn more easily.' do
           result = BookWorm::Book.find_book_by_isbn(@book_data[:isbn13])
           @book_data.each do |key,val|
             result.send(key).should == val
           end
         end
 
-        it 'can index on isbn13' do
+        it 'indexes by isbn13 more easily.' do
           result = BookWorm::Book.find_book_by_isbn(@book_data[:isbn13])
           @book_data.each do |key,val|
             result.send(key).should == val
