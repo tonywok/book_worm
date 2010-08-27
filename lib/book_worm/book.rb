@@ -1,5 +1,3 @@
-require 'cgi'
-
 module BookWorm
   class Book < Searchable
 
@@ -10,13 +8,13 @@ module BookWorm
                   :book_id
 
     def initialize(book_data)
-      self.long_title    = book_data["TitleLong"]
-      self.publisher     = book_data["PublisherText"]
-      self.authors       = book_data["AuthorsText"]
-      self.isbn          = book_data["isbn"]
-      self.isbn13        = book_data["isbn13"]
-      self.title         = book_data["Title"]
-      self.book_id       = book_data["book_id"]
+      self.long_title = book_data["TitleLong"]
+      self.publisher  = book_data["PublisherText"]
+      self.authors    = book_data["AuthorsText"]
+      self.isbn       = book_data["isbn"]
+      self.isbn13     = book_data["isbn13"]
+      self.title      = book_data["Title"]
+      self.book_id    = book_data["book_id"]
     end
 
     class << self
@@ -60,8 +58,8 @@ module BookWorm
       end
 
       def query_isbndb(index, value)
-        get(query_base, :query => { :index1 => index, 
-                                    :value1 => value, 
+        get(query_base, :query => { :index1 => index,
+                                    :value1 => value,
                                     :access_key => "2I9YKZ6J"})
       end
 
