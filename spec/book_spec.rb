@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'lib/book_worm'
+require 'lib/book_worm/book'
 
 describe BookWorm do
   describe '#find_book' do
@@ -9,12 +10,18 @@ describe BookWorm do
       end
     end
 
-    # TODO: Decide if I want to support this.
-    # context 'when finding without a specified index' do
-    #   it 'defaults to an isbn index' do
-    #     BookWorm::Book.find('1934356085').isbn.should == '1934356085'
-    #   end
-    # end
+    context 'when a search uses a non-existant index' do
+      it 'throws an exception' do
+        pending
+      end
+    end
+
+    context 'when finding without a specified index' do
+      it 'defaults to an isbn index' do
+        pending
+        # BookWorm::Book.find('1934356085').isbn.should == '1934356085'
+      end
+    end
 
     before :each do
      @book_data = { :isbn       => "1934356085",
@@ -75,6 +82,16 @@ describe BookWorm do
         end
       end
 
+      context 'when querying for a book by author' do
+
+        before { @author = @book_data[:authors].split(', ').first }
+
+        it 'finds the first book that matches the specified author' do
+          result = BookWorm::Book.find(:author, @author)
+          result.authors.should =~ /#{@author}/
+        end
+      end
+
       context 'when querying for a book by combined index' do
         before :each do
           @combined_index = "#{@book_data[:title]} #{@book_data[:publisher]} #{@book_data[:authors]}"
@@ -116,7 +133,7 @@ describe BookWorm do
         end
       end
     end
-  end
+  end # end find
 
   describe '#find_all' do
     context 'when querying for a collection of books' do
@@ -125,12 +142,19 @@ describe BookWorm do
       end
     end
 
-    # TODO: Decide if I want to support this.
-    # context 'when finding without a specified index' do
-    #   it 'defaults to an isbn index' do
-    #     BookWorm::Book.find('1934356085').isbn.should == '1934356085'
-    #   end
-    # end
+    context 'when finding without a specified index' do
+      it 'defaults to an isbn index' do
+        pending
+        # BookWorm::Book.find('1934356085').isbn.should == '1934356085'
+      end
+    end
+
+    context 'when finding without a specified index' do
+      it 'defaults to an isbn index' do
+        pending
+        # BookWorm::Book.find('1934356085').isbn.should == '1934356085'
+      end
+    end
 
     context 'when querying for a collection of books by isbn' do
       it 'indexes by isbn' do
@@ -197,19 +221,16 @@ describe BookWorm do
 
     context 'when querying for a collection of books by a full index' do
       it 'has results that match the full index' do
-        BookWorm::Book.find_all(:full, 'Ruby Rails').each do |book|
-          book.title.should =~ /ruby|rails/i
-        end
+        books = BookWorm::Book.find_all(:full, 'Ruby Rails Pragmatic Programming')
+        books.collect{ |book| book.title }.join('_').should =~ /ruby|rails/i
       end
 
       context 'when using #find_books helpers' do
         it 'has results that contain the arguments for full index search' do
-          summary = "Ruby Rails Pragmatic Programming"
-          BookWorm::Book.find_all_by_full_index(summary).each do |book|
-            book.title.should =~ /ruby|rails/i
-          end
+          books = BookWorm::Book.find_all_by_full_index('Ruby Rails Pragmatic Programming')
+          books.collect{ |book| book.title }.join('_').should =~ /ruby|rails/i
         end
       end
     end
-  end
+  end #end find_all
 end

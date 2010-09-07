@@ -1,5 +1,4 @@
-require 'httparty'
-require 'cgi'
-require 'book_worm/searchable'
-require 'book_worm/book'
-
+module BookWorm
+  require 'book_worm/configuration'
+  require 'book_worm/searchable'
+end
