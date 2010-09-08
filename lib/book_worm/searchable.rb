@@ -1,6 +1,3 @@
-require 'httparty'
-require 'net/http'
-
 module BookWorm
   module Searchable
     def self.included(base)
@@ -44,7 +41,6 @@ module BookWorm
       def normalize(results)
         begin
           [results['ISBNdb']['BookList']['BookData']].flatten.collect do |book|
-            debugger
             Book.new(book)
           end
         rescue

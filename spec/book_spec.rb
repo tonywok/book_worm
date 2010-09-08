@@ -83,7 +83,6 @@ describe BookWorm do
       end
 
       context 'when querying for a book by author' do
-
         before { @author = @book_data[:authors].split(', ').first }
 
         it 'finds the first book that matches the specified author' do
@@ -96,6 +95,7 @@ describe BookWorm do
         before :each do
           @combined_index = "#{@book_data[:title]} #{@book_data[:publisher]} #{@book_data[:authors]}"
         end
+
         it 'indexes using several combined fields' do
           @combined_index = "#{@book_data[:title]} #{@book_data[:publisher]} #{@book_data[:authors]}"
           result = BookWorm::Book.find(:combined, @combined_index)
@@ -103,6 +103,7 @@ describe BookWorm do
             result.send(key).should == val
           end
         end
+
         context 'when querying for a book by combined index' do
           it 'uses combined index more conveniently.' do
             result = BookWorm::Book.find_by_combined_index(@combined_index)
