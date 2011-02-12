@@ -1,5 +1,6 @@
 module BookWorm
   class Configuration
-    API_KEY = '2I9YKZ6J'
+    # supply your ISBNDB.com API key here
+    API_KEY = ''
   end
 end

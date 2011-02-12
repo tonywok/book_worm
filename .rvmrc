@@ -1,2 +1,2 @@
-rvm gemset use book_worm
+rvm use --create ruby-1.9.2@book_worm
 
