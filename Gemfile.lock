@@ -2,8 +2,7 @@ PATH
   remote: .
   specs:
     book_worm (0.0.1)
-      httparty (~> 0.6.1)
-      nokogiri (~> 1.4.3.1)
+      httparty
 
 GEM
   remote: http://rubygems.org/
@@ -12,7 +11,6 @@ GEM
     diff-lcs (1.1.2)
     httparty (0.6.1)
       crack (= 0.1.8)
-    nokogiri (1.4.3.1)
     rspec (2.0.0.beta.20)
       rspec-core (= 2.0.0.beta.20)
       rspec-expectations (= 2.0.0.beta.20)

@@ -8,14 +8,13 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Tony Schneider"]
   s.email       = ["tonywok@gmail.com"]
-  s.homepage    = "http://www.tonyschneider.com"
+  s.homepage    = ""
   s.summary     = %q{A simple gem for interacting with ISBNDB.com}
   s.description = %q{A simple gem for interacting with ISBNDB.com}
 
   s.rubyforge_project = "book_worm"
 
-  s.add_dependency "httparty", "~> 0.6.1"
-  s.add_dependency "nokogiri", "~> 1.4.3.1"
+  s.add_runtime_dependency "httparty"
   s.add_development_dependency "rspec"
 
   s.files         = `git ls-files`.split("\n")
