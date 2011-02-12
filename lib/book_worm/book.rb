@@ -1,6 +1,5 @@
 module BookWorm
   class Book
-
     attr_accessor :publisher, :authors, :isbn,
                   :isbn13, :title, :long_title,
                   :book_id

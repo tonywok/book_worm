@@ -1,6 +1,12 @@
 module BookWorm
-  class Configuration
-    # supply your ISBNDB.com API key here
-    API_KEY = ''
+  module Configuration
+    extend self
+
+    attr_accessor :config
+    @config = {}
+
+    def configure
+      yield @config
+    end
   end
 end
