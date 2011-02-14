@@ -1,4 +1,8 @@
 module BookWorm
+
+  # == Book
+  #
+  # Book is used to store the xml data that is returned from ISBNDB
   class Book
     attr_accessor :publisher, :authors, :isbn,
                   :isbn13, :title, :long_title,
