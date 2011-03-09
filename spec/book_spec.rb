@@ -29,7 +29,7 @@ describe BookWorm do
                     :publisher  => "Pragmatic Bookshelf",
                     :title      => 'Programming Ruby 1.9',
                     :long_title => "Programming Ruby 1.9: The Pragmatic Programmers' Guide",
-                    :authors    => "Dave Thomas, Chad Fowler, Andy Hunt, " }
+                    :authors    => "Dave Thomas, Chad Fowler, Andy Hunt" }
     end
 
     context 'when querying for a book by isbn' do
