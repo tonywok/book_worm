@@ -128,6 +128,7 @@ module BookWorm
     def query_isbndb(index, value)
       get(query_base, :query => { :index1 => index,
                                   :value1 => value,
+                                  :results => 'prices',
                                   :access_key => Configuration.config[:api_key], })
     end
 

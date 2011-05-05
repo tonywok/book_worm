@@ -226,4 +226,21 @@ describe BookWorm do
       end
     end
   end #end find_all
+
+  context 'by default include current average price of found books' do
+    context 'when using a find method' do
+      it 'includes prices' do
+        book = BookWorm.find(:isbn, '9781934356050')
+        book.average_price.to_s.should =~ /\d+\.\d{2}/
+      end
+    end
+
+    context 'when using a find_all method' do
+      it 'includes prices' do
+        BookWorm.find_all(:combined, 'Ruby Rails').each do |book|
+          book.average_price.to_s.should =~ /\d+\.\d{2}/
+        end
+      end
+    end
+  end
 end
