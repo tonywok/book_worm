@@ -22,7 +22,8 @@ module BookWorm
     private
 
     def average_price_listed(listings)
-      sum = 0
+      sum = 0.00
+      return sum if listings.empty?
       listings.each do |listing|
         sum += listing["price"].to_f
       end

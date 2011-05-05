@@ -138,7 +138,7 @@ module BookWorm
         [results['ISBNdb']['BookList']['BookData']].flatten.collect do |book|
           Book.new(book)
         end
-      rescue
+      rescue Exception => e
         []
       end
     end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    book_worm (0.1.5)
+    book_worm (0.1.6)
       httparty
 
 GEM
